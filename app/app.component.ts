@@ -13,17 +13,18 @@ export class Task {
 	selector: 'task-form',
 	template: `
 <div class="card card-block">
-  <h4 class="card-title">Create a task</h4>
-  <div class="form-group">
+  <h2 class="card-title">Add A Task</h2>
+  <div class="input-group">
+      
     <input type="text"
+            id="txtAddTask"
            class="form-control"
-           placeholder="Enter a new task"
            #task>
-  </div>
+    <span class="input-group-btn">
   <button type="button"
           class="btn btn-primary"
-          (click)="createTask(task.value)">Add a new task
-  </button>
+          (click)="createTask(task.value)"><span class="glyphicon glyphicon-ok"></span>
+  </button></span></div>
 </div>
   `
 })
@@ -32,6 +33,7 @@ export class TaskFormComponent {
 
 	createTask(task: string) {
 		this.taskCreated.emit(new Task(task));
+        document.getElementById("txtAddTask").value = "";
 	}
 }
 
@@ -58,15 +60,12 @@ task: Task[]
 	selector: 'task-list',
 	template: `<div class="row">
       <div class="col-sm-12">
-<task-form (taskCreated)="addTask($event)"></task-form>
-<div class="card card-block">
-<h5>Todo List</h5>
-    <div class="row">
-      <div class="col-sm-12">
+    <h1>Your Todo List</h1>
+    <div class="task-container">
 <task *ngFor="let t of tasks; let i = index;" [task]="t" (deleteTask)="deleteTask(i)"></task>
 </div>
-</div>
-</div>
+<hr>
+<task-form (taskCreated)="addTask($event)"></task-form>
 </div>
 </div>
   `

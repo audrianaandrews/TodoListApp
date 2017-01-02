@@ -22,6 +22,7 @@ var TaskFormComponent = (function () {
     }
     TaskFormComponent.prototype.createTask = function (task) {
         this.taskCreated.emit(new Task(task));
+        document.getElementById("txtAddTask").value = "";
     };
     __decorate([
         core_1.Output(), 
@@ -30,7 +31,7 @@ var TaskFormComponent = (function () {
     TaskFormComponent = __decorate([
         core_1.Component({
             selector: 'task-form',
-            template: "\n<div class=\"card card-block\">\n  <h4 class=\"card-title\">Create a task</h4>\n  <div class=\"form-group\">\n    <input type=\"text\"\n           class=\"form-control\"\n           placeholder=\"Enter a new task\"\n           #task>\n  </div>\n  <button type=\"button\"\n          class=\"btn btn-primary\"\n          (click)=\"createTask(task.value)\">Add a new task\n  </button>\n</div>\n  "
+            template: "\n<div class=\"card card-block\">\n  <h2 class=\"card-title\">Add A Task</h2>\n  <div class=\"input-group\">\n      \n    <input type=\"text\"\n            id=\"txtAddTask\"\n           class=\"form-control\"\n           #task>\n    <span class=\"input-group-btn\">\n  <button type=\"button\"\n          class=\"btn btn-primary\"\n          (click)=\"createTask(task.value)\"><span class=\"glyphicon glyphicon-ok\"></span>\n  </button></span></div>\n</div>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], TaskFormComponent);
@@ -75,7 +76,7 @@ var TaskListComponent = (function () {
     TaskListComponent = __decorate([
         core_1.Component({
             selector: 'task-list',
-            template: "<div class=\"row\">\n      <div class=\"col-sm-12\">\n<task-form (taskCreated)=\"addTask($event)\"></task-form>\n<div class=\"card card-block\">\n<h5>Todo List</h5>\n    <div class=\"row\">\n      <div class=\"col-sm-12\">\n<task *ngFor=\"let t of tasks; let i = index;\" [task]=\"t\" (deleteTask)=\"deleteTask(i)\"></task>\n</div>\n</div>\n</div>\n</div>\n</div>\n  "
+            template: "<div class=\"row\">\n      <div class=\"col-sm-12\">\n    <h1>Your Todo List</h1>\n    <div class=\"task-container\">\n<task *ngFor=\"let t of tasks; let i = index;\" [task]=\"t\" (deleteTask)=\"deleteTask(i)\"></task>\n</div>\n<hr>\n<task-form (taskCreated)=\"addTask($event)\"></task-form>\n</div>\n</div>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], TaskListComponent);

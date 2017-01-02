@@ -1,31 +1,72 @@
-/* Master Styles */
-h1 {
-  color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
-}
-h2, h3 {
-  color: #444;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: lighter;
-}
 body {
   margin: 2em;
+    font-size:18px;
+}
+#task-app{
+    background-color: #c7b29a;
+    padding-bottom:30px;
+}
+h1, h2 {
+  color: #362f2d;
+  font-family: 'Raleway', sans-serif;
+  font-size: 30px;
+  font-weight:600;
+}
+h2 {
+   font-size:20px;
+    margin-top:50px;
+}
+.task-container{
+    box-shadow: 2px 2px 5px rgba(0,0,0, 0.2);
 }
 task{
     display: block;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 5px 10px;
+    border-bottom: 1px solid #998675;
+    padding: 8px 10px;
+    background-color: #FFF;
 }
 task p{
     margin-bottom:0;
     
 }
 task button{
-    float: right;
-    background-color: #ccc;
+    background-color: transparent;
     border: none;
     padding: 0px 7px;
-    color: #FFF;
+    color: #998675;
+    float: right;
+    font-size: 29px;
+    height: 20px;
+    line-height: 22px;
+}
+task button:hover{
+    color: #362f2d;
+}
+task button, task button:focus, task button:active{
+outline:none;
+}
+task-form input-group{
+    border-radius: 0;
+}
+
+task-form input[type="text"]{
+    border:none;
+    border-radius: 0
+}
+task-form input[type="text"]:focus{
+    box-shadow: none;
+}
+
+task-form .input-group-btn > button, task-form .input-group-btn > button:focus, task-form .input-group-btn > button:active, task-form .input-group-btn>.btn:active, task-form .input-group-btn>.btn:focus{
+    background-color: #998675;
+    color:#FFF;
+    border:none;
+    outline:none;
+    padding: 10px 12px;
+}
+task-form .input-group-btn > button:hover{
+    color: #998675;
+    background-color:#FFF;
+    border:none;
+    transition: 0.3s;
 }
