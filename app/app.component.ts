@@ -5,6 +5,12 @@ export class Task {
 
 	constructor(task: string) {
 		this.task = task;
+		this.inputHidden = true;
+		this.textHidden = false;
+	}
+	toggle() {
+		this.textHidden = !this.textHidden;
+		this.inputHidden = !this.inputHidden;
 	}
 }
 
@@ -15,7 +21,7 @@ export class Task {
 <div class="card card-block">
   <h2 class="card-title">Add A Task</h2>
   <div class="input-group">
-      
+
     <input type="text"
             id="txtAddTask"
            class="form-control"
@@ -33,7 +39,7 @@ export class TaskFormComponent {
 
 	createTask(task: string) {
 		this.taskCreated.emit(new Task(task));
-        document.getElementById("txtAddTask").value = "";
+        (<HTMLInputElement>document.getElementById("txtAddTask")).value = "";
 	}
 }
 
@@ -42,8 +48,12 @@ export class TaskFormComponent {
 	selector: 'task',
 	template: `
   <div class="row">
-    <div class="col-xs-10"><p>{{data.task}}</p></div>
-  <div class="col-xs-2"><button (click)="deleteClicked()" aria-label="Delete"><span aria-hidden="true">&times;</span></button></div>
+    <div class="col-xs-10"><p [hidden]="data.textHidden">{{data.task}}</p><input type="text" [hidden]="data.inputHidden" [(ngModel)]="data.task"></div>
+		<div class="col-xs-2">
+		<button id="deleteButton"(click)="deleteClicked()" aria-label="Delete"><span aria-hidden="true">&times;</span></button><button (click)="data.toggle()" aria-label="Edit" [hidden]="data.textHidden"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+<button (click)="data.toggle()" aria-label="Edit" [hidden]="data.inputHidden"><span class="glyphicon glyphicon-ok"></span></button>
+
+		</div>
   </div>
   `
 })
@@ -94,4 +104,3 @@ export class TaskListComponent {
 })
 export class AppComponent {
 }
-

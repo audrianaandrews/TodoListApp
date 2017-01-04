@@ -27,7 +27,7 @@ task{
 }
 task p{
     margin-bottom:0;
-    
+
 }
 task button{
     background-color: transparent;
@@ -35,15 +35,27 @@ task button{
     padding: 0px 7px;
     color: #998675;
     float: right;
-    font-size: 29px;
+    font-size: 17px;
     height: 20px;
     line-height: 22px;
+}
+task button#deleteButton{
+    font-size: 29px;
 }
 task button:hover{
     color: #362f2d;
 }
 task button, task button:focus, task button:active{
 outline:none;
+}
+task input{
+  width:100%;
+  padding:0;
+  border:none;
+  border-bottom:1px solid #998675;
+}
+task input:focus{
+  outline:none;
 }
 task-form input-group{
     border-radius: 0;

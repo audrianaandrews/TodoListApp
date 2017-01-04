@@ -6,7 +6,8 @@ import { AppComponent, TaskComponent, TaskListComponent, TaskFormComponent  }  f
 
 
 @NgModule({
-	imports: [BrowserModule],
+	imports: [BrowserModule,
+	        FormsModule],
 	declarations: [
 		AppComponent,
 		TaskComponent,
