@@ -9,17 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var TaskListComponent = (function () {
+    function TaskListComponent() {
+        this.tasks = [];
     }
-    AppComponent = __decorate([
+    TaskListComponent.prototype.addTask = function (task) {
+        this.tasks.unshift(task);
+    };
+    TaskListComponent.prototype.deleteTask = function (taskIndex) {
+        this.tasks.splice(taskIndex, 1);
+    };
+    TaskListComponent = __decorate([
         core_1.Component({
-            selector: 'app',
-            template: "\n<task-list></task-list>\n  "
+            selector: 'task-list',
+            template: "<div class=\"row\">\n      <div class=\"col-sm-12\">\n    <h1>Your Todo List</h1>\n    <div class=\"task-container\">\n<task *ngFor=\"let t of tasks; let i = index;\" [task]=\"t\" (deleteTask)=\"deleteTask(i)\"></task>\n</div>\n<hr>\n<task-form (taskCreated)=\"addTask($event)\"></task-form>\n</div>\n</div>\n  "
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], TaskListComponent);
+    return TaskListComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.TaskListComponent = TaskListComponent;
+//# sourceMappingURL=task-list.component.js.map

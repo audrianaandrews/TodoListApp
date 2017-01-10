@@ -12,6 +12,9 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var app_component_1 = require('./app.component');
+var task_form_component_1 = require('./task-form.component');
+var task_list_component_1 = require('./task-list.component');
+var task_component_1 = require('./task.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -21,9 +24,9 @@ var AppModule = (function () {
                 forms_1.FormsModule],
             declarations: [
                 app_component_1.AppComponent,
-                app_component_1.TaskComponent,
-                app_component_1.TaskListComponent,
-                app_component_1.TaskFormComponent
+                task_list_component_1.TaskListComponent,
+                task_component_1.TaskComponent,
+                task_form_component_1.TaskFormComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

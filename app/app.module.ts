@@ -2,16 +2,18 @@ import {Component, NgModule, Input, Output, EventEmitter} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 
-import { AppComponent, TaskComponent, TaskListComponent, TaskFormComponent  }  from './app.component';
-
+import { AppComponent  }  from './app.component';
+import { TaskFormComponent } from './task-form.component';
+import { TaskListComponent  }  from './task-list.component';
+import { TaskComponent } from './task.component';
 
 @NgModule({
 	imports: [BrowserModule,
 	        FormsModule],
 	declarations: [
 		AppComponent,
-		TaskComponent,
 		TaskListComponent,
+		TaskComponent,
 		TaskFormComponent
 	],
 	bootstrap: [AppComponent]
