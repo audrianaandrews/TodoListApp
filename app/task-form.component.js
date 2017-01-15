@@ -29,7 +29,7 @@ var TaskFormComponent = (function () {
     TaskFormComponent = __decorate([
         core_1.Component({
             selector: 'task-form',
-            template: "\n<div class=\"card card-block\">\n  <h2 class=\"card-title\">Add A Task</h2>\n  <div class=\"input-group\">\n\n    <input type=\"text\"\n            id=\"txtAddTask\"\n           class=\"form-control\"\n           #task>\n    <span class=\"input-group-btn\">\n  <button type=\"button\"\n          class=\"btn btn-primary\"\n          (click)=\"createTask(task.value)\"><span class=\"glyphicon glyphicon-ok\"></span>\n  </button></span></div>\n</div>\n  "
+            template: "\n<div class=\"card card-block\">\n  <h2 class=\"card-title\">Add A Task</h2>\n    <form action=\"/add-task\" method=\"POST\">\n  <div class=\"input-group\">\n\n    <input type=\"text\"\n            id=\"txtAddTask\"\n           class=\"form-control\"\nname='task'\n           #task>\n    <span class=\"input-group-btn\">\n  <button type=\"submit\"\n          class=\"btn btn-primary\"\n          (click)=\"createTask(task.value)\"><span class=\"glyphicon glyphicon-ok\"></span>\n  </button></span></div>\n    </form>\n</div>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], TaskFormComponent);
