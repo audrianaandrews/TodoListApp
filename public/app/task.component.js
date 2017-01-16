@@ -35,4 +35,3 @@ var TaskComponent = (function () {
     return TaskComponent;
 }());
 exports.TaskComponent = TaskComponent;
-//# sourceMappingURL=task.component.js.map

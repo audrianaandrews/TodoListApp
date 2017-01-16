@@ -9,10 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+//import { HttpModule } from '@angular/http';
+//import { Http, Headers, RequestOptions, Response } from 'angular2/http';
 var TaskListComponent = (function () {
     function TaskListComponent() {
         this.tasks = [];
     }
+    //constructor (private http: Http) {}
     TaskListComponent.prototype.addTask = function (task) {
         this.tasks.unshift(task);
     };
@@ -29,4 +32,3 @@ var TaskListComponent = (function () {
     return TaskListComponent;
 }());
 exports.TaskListComponent = TaskListComponent;
-//# sourceMappingURL=task-list.component.js.map

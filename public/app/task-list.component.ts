@@ -2,6 +2,8 @@ import {Component, NgModule, Input, Output, EventEmitter} from '@angular/core';
 import { Task } from './task';
 import { TaskComponent } from './task.component';
 import { TaskFormComponent } from './task-form.component';
+//import { HttpModule } from '@angular/http';
+//import { Http, Headers, RequestOptions, Response } from 'angular2/http';
 
 @Component({
 	selector: 'task-list',
@@ -23,6 +25,7 @@ export class TaskListComponent {
 	constructor() {
 		this.tasks = [];
 	}
+    //constructor (private http: Http) {}
 
 	addTask(task) {
 		this.tasks.unshift(task);

@@ -16,7 +16,7 @@ import { Task } from './task';
 export class TaskComponent {
 	@Input('task') data: Task;
     @Output() deleteTask = new EventEmitter<Task>();
-task: Task[]
+    task: Task[]
       deleteClicked() {
         this.deleteTask.next(this.task);
       }

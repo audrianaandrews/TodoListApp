@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
+var http_1 = require('@angular/http');
 var app_component_1 = require('./app.component');
 var task_form_component_1 = require('./task-form.component');
 var task_list_component_1 = require('./task-list.component');
@@ -20,14 +21,14 @@ var AppModule = (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule,
-                forms_1.FormsModule],
+            imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule],
             declarations: [
                 app_component_1.AppComponent,
                 task_list_component_1.TaskListComponent,
                 task_component_1.TaskComponent,
                 task_form_component_1.TaskFormComponent
             ],
+            providers: [],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])
@@ -35,4 +36,3 @@ var AppModule = (function () {
     return AppModule;
 }());
 exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map

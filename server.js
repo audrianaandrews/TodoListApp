@@ -9,14 +9,14 @@ var path = require('path')
 var cookieId = mongoose.Types.ObjectId().toString();
 
 
-/*MongoClient.connect('mongodb://'+ loginInfo.username + ':'+ loginInfo.password + '@ds053728.mlab.com:53728/star-wars-quotes', (err, database) => {
+MongoClient.connect('mongodb://'+ loginInfo.username + ':'+ loginInfo.password + '@ds111529.mlab.com:11529/tasks', (err, database) => {
   if (err) return console.log(err);
   db = database;
-/*app.listen(3000, () => {
+    app.listen(3000, () => {
     console.log('listening on 3000')
   })
-})*/
-app.use(bodyParser.urlencoded({extended: true}))
+})
+
 app.use(cookieParser());
 // set a cookie
 app.use(function (req, res, next) {
@@ -32,6 +32,9 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use(bodyParser.urlencoded({extended: true}))
+
+
 app.use(express.static('/'))
 app.use('/scripts', express.static(__dirname + '/node_modules/'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -40,15 +43,13 @@ app.get('/', (req, res) =>{
     res.sendFile(path.join(__dirname + '/index.html'));
 })
 
-app.listen(3000, () => {
-    console.log('listening on 3000')
-  })
-
-/*app.post('/add-task', (req, res) => {
-  db.collection('quotes').save({'_id': cookieId, 'task':req.body.task}, (err, result) => {
+app.post('/add-task', (req, res) => {
+    var cookievalue = req.cookies.todo_test;
+    console.log(req.body);
+    /*db.collection('tasks').save({'_id': cookievalue, 'task':req.body.task}, (err, result) => {
     if (err) return console.log(err)
 
-    console.log('saved to database')
+    console.log('Saved to database.')
     res.redirect('/')
-  })
-})*/
+  })*/
+})

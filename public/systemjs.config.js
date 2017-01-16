@@ -6,14 +6,16 @@
   // map tells the System loader where to look for things
   var map = {
     'app':                        'app', // 'dist',
-    '@angular':                   'node_modules/@angular',
-    'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
-    'rxjs':                       'node_modules/rxjs'
+    '@angular':                   '/node_modules/@angular',
+    'angular2':                   '/node_modules/angular2',
+    'angular2-in-memory-web-api': '/node_modules/angular2-in-memory-web-api',
+    'rxjs':                       '/node_modules/rxjs'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
+    'angular2':                     { main: 'index.js', defaultExtension: 'js' },
     'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
   };
   var ngPackageNames = [
@@ -31,6 +33,7 @@
   // Individual files (~300 requests):
   function packIndex(pkgName) {
     packages['@angular/'+pkgName] = { main: 'index.js', defaultExtension: 'js' };
+      packages['angular2/'+pkgName] = { main: 'index.js', defaultExtension: 'js' };
   }
   // Bundled (~40 requests):
   function packUmd(pkgName) {

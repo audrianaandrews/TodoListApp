@@ -29,11 +29,10 @@ gulp.task('browser-sync', function() {
 
 gulp.task('typescript:watch', function () {
     var tsProject = ts.createProject('tsconfig.json');
-    var tsResult = gulp.src("*.ts")
+    var tsResult = gulp.src("./public/app/*.ts")
         .pipe(tsProject());
 
-
-    return tsResult.js.pipe(gulp.dest('app'))
+    return tsResult.js.pipe(gulp.dest('./public/app'))
     .pipe(browserSync.stream());
 });
 
