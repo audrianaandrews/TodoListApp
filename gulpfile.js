@@ -40,11 +40,11 @@ gulp.task('lint', function () {
   gulp.src('*.js')
     .pipe(jshint())
 })
- 
+
 gulp.task('develop', function (cb) {
     var started = false;
-    
-  return nodemon({ script: 
+
+  return nodemon({ script:
             'server.js'
           , watch: ['*.js']
           , tasks: ['lint'] 
@@ -54,15 +54,15 @@ gulp.task('develop', function (cb) {
       })
       .on('crash', function() {
         console.error('Application has crashed!\n')
-         stream.emit('restart', 10)  // restart the server in 10 seconds 
+         stream.emit('restart', 10)  // restart the server in 10 seconds
       })
     .on('start', function () {
 		// to avoid nodemon being started multiple times
 		// thanks @matthisk
 		if (!started) {
 			cb();
-			started = true; 
-		} 
+			started = true;
+		}
 	});
 })
 
