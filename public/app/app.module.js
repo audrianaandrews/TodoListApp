@@ -8,33 +8,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var platform_browser_1 = require("@angular/platform-browser");
-var forms_1 = require("@angular/forms");
-var http_1 = require("@angular/http");
-var app_component_1 = require("./app.component");
-var task_form_component_1 = require("./task-form.component");
-var task_list_component_1 = require("./task-list.component");
-var task_component_1 = require("./task.component");
-var forms_2 = require("@angular/forms");
+var core_1 = require('@angular/core');
+var platform_browser_1 = require('@angular/platform-browser');
+var forms_1 = require('@angular/forms');
+var http_1 = require('@angular/http');
+var app_component_1 = require('./app.component');
+var task_form_component_1 = require('./task-form.component');
+var task_list_component_1 = require('./task-list.component');
+var task_component_1 = require('./task.component');
+var forms_2 = require('@angular/forms');
 var AppModule = (function () {
     function AppModule() {
     }
+    AppModule = __decorate([
+        core_1.NgModule({
+            imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_2.ReactiveFormsModule, forms_1.FormsModule],
+            declarations: [
+                app_component_1.AppComponent,
+                task_list_component_1.TaskListComponent,
+                task_component_1.TaskComponent,
+                task_form_component_1.TaskFormComponent
+            ],
+            providers: [],
+            bootstrap: [app_component_1.AppComponent]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], AppModule);
     return AppModule;
 }());
-AppModule = __decorate([
-    core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_2.ReactiveFormsModule, forms_1.FormsModule],
-        declarations: [
-            app_component_1.AppComponent,
-            task_list_component_1.TaskListComponent,
-            task_component_1.TaskComponent,
-            task_form_component_1.TaskFormComponent
-        ],
-        providers: [],
-        bootstrap: [app_component_1.AppComponent]
-    }),
-    __metadata("design:paramtypes", [])
-], AppModule);
 exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
