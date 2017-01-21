@@ -14,27 +14,27 @@ var http_2 = require("@angular/http");
 var task_1 = require("./task");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
-var Rx_1 = require("rxjs/Rx");
 var forms_1 = require("@angular/forms");
 var TaskFormComponent = (function () {
     function TaskFormComponent(http, fb) {
         this.http = http;
         this.fb = fb;
         this.taskCreated = new core_1.EventEmitter();
+        this.headers = new http_2.Headers({ 'Content-Type': 'application/json' });
+        /*createTask(task: string) {
+            this.taskCreated.emit(new Task(task));
+            (<HTMLInputElement>document.getElementById("txtAddTask")).value = "";
+        }*/
         this.taskForm = this.fb.group({
             taskText: [""]
         });
     }
-    TaskFormComponent.prototype.createTask = function (task) {
+    TaskFormComponent.prototype.addTaskToDB = function (event, task) {
         this.taskCreated.emit(new task_1.Task(task));
         document.getElementById("txtAddTask").value = "";
-    };
-    TaskFormComponent.prototype.addTaskToDB = function (event) {
-        var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_2.RequestOptions({ headers: headers });
-        var formData = this.taskForm.value;
+        var formData = JSON.stringify(this.taskForm.value);
         //console.log(formData);
-        return this.http.post('/add-task', JSON.stringify(formData), options).map(function (res) { return res.json(); }).catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
+        return this.http.post('add-task', formData, { headers: this.headers });
     };
     return TaskFormComponent;
 }());
@@ -48,11 +48,12 @@ __decorate([
 ], TaskFormComponent.prototype, "task", void 0);
 TaskFormComponent = __decorate([
     core_1.Component({
+        moduleId: module.id,
         selector: 'task-form',
-        template: "\n<div class=\"card card-block\">\n  <h2 class=\"card-title\">Add A Task</h2>\n    <form [formGroup]=\"taskForm\" (ngSubmit)=\"addTaskToDB($event)\" action=\"/add-task\" method=\"POST\">\n  <div class=\"input-group\">\n\t<label for=\"txtAddTask\" class=\"sr-only\">Add Task</label>\n    <input type=\"text\"\n            id=\"txtAddTask\"\n           class=\"form-control\" name=\"task\"\n           #task\n    formControlName=\"taskText\" >\n    <span class=\"input-group-btn\">\n  <button type=\"submit\"\n          class=\"btn btn-primary\"\n(click)=\"createTask(task.value)\"\n          ><span class=\"glyphicon glyphicon-ok\"></span>\n  </button></span></div>\n    </form>\n</div>\n  "
+        templateUrl: 'task-form.component.html',
+        styleUrls: ['task-form.component.css']
     }),
-    __metadata("design:paramtypes", [http_1.Http,
-        forms_1.FormBuilder])
+    __metadata("design:paramtypes", [http_1.Http, forms_1.FormBuilder])
 ], TaskFormComponent);
 exports.TaskFormComponent = TaskFormComponent;
 //# sourceMappingURL=task-form.component.js.map

@@ -9,50 +9,33 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
+	moduleId: module.id,
 	selector: 'task-form',
-	template: `
-<div class="card card-block">
-  <h2 class="card-title">Add A Task</h2>
-    <form [formGroup]="taskForm" (ngSubmit)="addTaskToDB($event)">
-  <div class="input-group">
-	<label for="txtAddTask" class="sr-only">Add Task</label>
-    <input type="text"
-            id="txtAddTask"
-           class="form-control" name="task"
-           #task
-    formControlName="taskText" >
-    <span class="input-group-btn">
-  <button type="submit"
-          class="btn btn-primary"
-(click)="createTask(task.value)"
-          ><span class="glyphicon glyphicon-ok"></span>
-  </button></span></div>
-    </form>
-</div>
-  `
+	templateUrl: 'task-form.component.html',
+	styleUrls: [ 'task-form.component.css' ]
 })
 export class TaskFormComponent {
 	@Output() taskCreated = new EventEmitter<Task>();
     @Input() task: Task;
 
-			constructor(private http: Http,
-			public fb: FormBuilder){}
-
-	createTask(task: string) {
+			constructor(private http: Http,public fb: FormBuilder){}
+			private headers = new Headers({'Content-Type': 'application/json'});
+	/*createTask(task: string) {
 		this.taskCreated.emit(new Task(task));
         (<HTMLInputElement>document.getElementById("txtAddTask")).value = "";
-	}
+	}*/
 
 	public taskForm = this.fb.group({
     taskText: [""]
   });
 
-addTaskToDB(event){
-				let headers = new Headers({ 'Content-Type': 'application/json' });
-				let options = new RequestOptions({ headers: headers });
+addTaskToDB(event, task: string){
+				this.taskCreated.emit(new Task(task));
+				(<HTMLInputElement>document.getElementById("txtAddTask")).value = "";
 
-				let formData = this.taskForm.value;
+				let formData = JSON.stringify(this.taskForm.value);
         //console.log(formData);
-        return this.http.post('/add-task', JSON.stringify(formData), options).map(res => res.json()).catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+
+        return this.http.post('add-task', formData, {headers: this.headers});
     }
 }

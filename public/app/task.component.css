@@ -1,0 +1,39 @@
+#task{
+    display: block;
+    overflow: auto;
+    border-bottom: 1px solid #998675;
+    padding: 8px 10px;
+    background-color: #FFF;
+}
+p{
+    margin-bottom:0;
+
+}
+button{
+    background-color: transparent;
+    border: none;
+    padding: 0px 7px;
+    color: #998675;
+    float: right;
+    font-size: 17px;
+    height: 20px;
+    line-height: 22px;
+}
+button#deleteButton{
+    font-size: 29px;
+}
+button:hover{
+    color: #362f2d;
+}
+button, button:focus, button:active{
+outline:none;
+}
+input{
+  width:100%;
+  padding:0;
+  border:none;
+  border-bottom:1px solid #998675;
+}
+input:focus{
+  outline:none;
+}

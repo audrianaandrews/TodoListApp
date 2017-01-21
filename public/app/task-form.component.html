@@ -1,0 +1,17 @@
+<div class="card card-block">
+  <h2 class="card-title">Add A Task</h2>
+    <form [formGroup]="taskForm" (ngSubmit)="addTaskToDB($event, task.value)">
+  <div class="input-group">
+	<label for="txtAddTask" class="sr-only">Add Task</label>
+    <input type="text"
+            id="txtAddTask"
+           class="form-control" name="task"
+           #task
+    formControlName="taskText" >
+    <span class="input-group-btn">
+  <button type="submit"
+          class="btn btn-primary"
+          ><span class="glyphicon glyphicon-ok"></span>
+  </button></span></div>
+    </form>
+</div>

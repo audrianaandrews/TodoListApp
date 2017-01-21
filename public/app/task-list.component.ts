@@ -6,18 +6,11 @@ import { TaskFormComponent } from './task-form.component';
 //import { Http, Headers, RequestOptions, Response } from 'angular2/http';
 
 @Component({
+	//makes it so angular doesn't look for related files in root folder
+	moduleId: module.id,
 	selector: 'task-list',
-	template: `<div class="row">
-      <div class="col-sm-12">
-    <h1>Your Todo List</h1>
-    <div class="task-container">
-<task *ngFor="let t of tasks; let i = index;" [task]="t" (deleteTask)="deleteTask(i)"></task>
-</div>
-<hr>
-<task-form (taskCreated)="addTask($event)"></task-form>
-</div>
-</div>
-  `
+	templateUrl: 'task-list.component.html',
+	styleUrls: [ 'task-list.component.css' ]
 })
 export class TaskListComponent {
 	tasks: Task[];

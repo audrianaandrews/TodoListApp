@@ -9,13 +9,13 @@ var path = require('path')
 var cookieId = mongoose.Types.ObjectId().toString();
 
 
-MongoClient.connect('mongodb://'+ loginInfo.username + ':'+ loginInfo.password + '@ds111529.mlab.com:11529/tasks', (err, database) => {
+/*MongoClient.connect('mongodb://'+ loginInfo.username + ':'+ loginInfo.password + '@ds111529.mlab.com:11529/tasks', (err, database) => {
   if (err) return console.log(err);
   db = database;
     app.listen(3000, () => {
     console.log('listening on 3000')
   })
-})
+})*/
 
 app.use(cookieParser());
 // set a cookie
@@ -35,9 +35,10 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
 
-app.post('/add-task', (req, res) => {
+app.post('/add-task', (req, res, next) => {
     var cookievalue = req.cookies.todo_test;
     console.log(req.body);
+    console.log("Post works");
     /*db.collection('tasks').save({'_id': cookievalue, 'task':[]}, (err, result) => {
       if (err) return console.log(err)
       console.log('User added to database.')
@@ -51,4 +52,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) =>{
     res.sendFile(path.join(__dirname + '/index.html'));
+})
+
+app.listen(3000, () => {
+console.log('listening on 3000')
 })

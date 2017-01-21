@@ -1,0 +1,9 @@
+h1{
+  color: #362f2d;
+  font-family: 'Raleway', sans-serif;
+  font-size: 30px;
+  font-weight:600;
+}
+.task-container{
+    box-shadow: 2px 2px 5px rgba(0,0,0, 0.2);
+}
