@@ -1,6 +1,7 @@
 import {Component, NgModule, Input, Output, EventEmitter} from '@angular/core';
-import {Http, Response, Request, RequestMethod, Headers, RequestOptions } from '@angular/http';
 import { Task } from './task';
+import {TaskService} from './task.service';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Observable} from 'rxjs/Rx';
@@ -11,40 +12,30 @@ import { FormBuilder, Validators } from '@angular/forms';
 	moduleId: module.id,
 	selector: 'task-form',
 	templateUrl: 'task-form.component.html',
-	styleUrls: [ 'task-form.component.css' ]
+	styleUrls: [ 'task-form.component.css' ],
+	providers: [TaskService]
 })
 export class TaskFormComponent {
 	@Output() taskCreated = new EventEmitter<Task>();
-    @Input() task: Task;
+  @Input() task: Task;
 
-			constructor(private http: Http,public fb: FormBuilder){}
-
-	/*createTask(task: string) {
-		this.taskCreated.emit(new Task(task));
-        (<HTMLInputElement>document.getElementById("txtAddTask")).value = "";
-	}*/
+	constructor(
+		public fb: FormBuilder,
+		private taskService: TaskService){}
 
 	public taskForm = this.fb.group({
     taskText: [""]
   });
 
 addTaskToDB(event, task: string) {
-				let formData = JSON.stringify(this.taskForm.value);
-				let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-        let options       = new RequestOptions({ headers: headers }); // Create a request option
-
-        //console.log(formData);
-
-        return this.http.post('add-task', formData, options)
-				.map((res:Response) => res.json())
-				.catch((error:any) => Observable.throw(error.json().error || 'Server error'))
-				.subscribe(res => {
-					/*this.taskCreated.emit(new Task(task));
-					(<HTMLInputElement>document.getElementById("txtAddTask")).value = "";*/
-				},
-	      err => {
-	          // Log errors if any
-	          console.log(err);
-	      });
+				this.taskService.addTask(this.taskForm).subscribe(
+						res => {
+							this.taskCreated.emit(new Task(res.latestTask));
+							(<HTMLInputElement>document.getElementById("txtAddTask")).value = "";
+						},
+						 err => {
+								 // Log errors if any
+								 console.log(err);
+						 });
     }
 }

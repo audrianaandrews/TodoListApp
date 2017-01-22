@@ -1,7 +1,8 @@
-import {Component, NgModule, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit,NgModule, Input, Output, EventEmitter} from '@angular/core';
 import { Task } from './task';
 import { TaskComponent } from './task.component';
 import { TaskFormComponent } from './task-form.component';
+import {TaskService} from './task.service';
 //import { HttpModule } from '@angular/http';
 //import { Http, Headers, RequestOptions, Response } from 'angular2/http';
 
@@ -10,20 +11,69 @@ import { TaskFormComponent } from './task-form.component';
 	moduleId: module.id,
 	selector: 'task-list',
 	templateUrl: 'task-list.component.html',
-	styleUrls: [ 'task-list.component.css' ]
+	styleUrls: [ 'task-list.component.css' ],
+	providers: [TaskService]
 })
-export class TaskListComponent {
+export class TaskListComponent  implements OnInit{
 	tasks: Task[];
+	@Output() taskCreated = new EventEmitter<Task>();
+	@Input() task: Task;
 
-	constructor() {
+	constructor(private taskService: TaskService) {
 		this.tasks = [];
 	}
     //constructor (private http: Http) {}
 
 	addTask(task) {
-		this.tasks.unshift(task);
+		this.tasks.push(task);
 	}
+
+	editTask(taskIndex,taskText) {
+		var indexString = taskIndex.toString();
+		//console.log(this.tasks[taskIndex]);
+		//.toggle();
+		this.taskService.updateTask(indexString, taskText.task)
+											.subscribe(
+													res => {
+													},
+													 err => {
+															 // Log errors if any
+															 console.log(err);
+													 });
+	}
+
   deleteTask(taskIndex) {
-		this.tasks.splice(taskIndex, 1);
+		console.log(taskIndex);
+		var indexString = taskIndex.toString();
+		this.taskService.removeTask(indexString)
+											.subscribe(
+													res => {
+														this.tasks.splice(taskIndex, 1);
+													},
+													 err => {
+															 // Log errors if any
+															 console.log(err);
+													 });
+		//this.tasks.splice(taskIndex, 1);
 	}
+	ngOnInit() {
+            this.loadTasks();
+    }
+
+    loadTasks() {
+         this.taskService.getTasks()
+                           .subscribe(
+                               res => {
+																 var t;
+																 for(t in res.userTasks){
+																	 var newTask = new Task(res.userTasks[t]);
+																	 this.tasks.push(newTask);
+																 }
+															 },
+                                err => {
+                                    // Log errors if any
+                                    console.log(err);
+                                });
+    }
+
 }

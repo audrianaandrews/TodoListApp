@@ -9,36 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
 var task_1 = require('./task');
+var task_service_1 = require('./task.service');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/catch');
-var Rx_1 = require('rxjs/Rx');
 var forms_1 = require('@angular/forms');
 var TaskFormComponent = (function () {
-    function TaskFormComponent(http, fb) {
-        this.http = http;
+    function TaskFormComponent(fb, taskService) {
         this.fb = fb;
+        this.taskService = taskService;
         this.taskCreated = new core_1.EventEmitter();
-        /*createTask(task: string) {
-            this.taskCreated.emit(new Task(task));
-            (<HTMLInputElement>document.getElementById("txtAddTask")).value = "";
-        }*/
         this.taskForm = this.fb.group({
             taskText: [""]
         });
     }
     TaskFormComponent.prototype.addTaskToDB = function (event, task) {
-        var formData = JSON.stringify(this.taskForm.value);
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-        var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
-        //console.log(formData);
-        return this.http.post('add-task', formData, options)
-            .map(function (res) { return res.json(); })
-            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); })
-            .subscribe(function (res) {
-            /*this.taskCreated.emit(new Task(task));
-            (<HTMLInputElement>document.getElementById("txtAddTask")).value = "";*/
+        var _this = this;
+        this.taskService.addTask(this.taskForm).subscribe(function (res) {
+            _this.taskCreated.emit(new task_1.Task(res.latestTask));
+            document.getElementById("txtAddTask").value = "";
         }, function (err) {
             // Log errors if any
             console.log(err);
@@ -57,9 +46,10 @@ var TaskFormComponent = (function () {
             moduleId: module.id,
             selector: 'task-form',
             templateUrl: 'task-form.component.html',
-            styleUrls: ['task-form.component.css']
+            styleUrls: ['task-form.component.css'],
+            providers: [task_service_1.TaskService]
         }), 
-        __metadata('design:paramtypes', [http_1.Http, forms_1.FormBuilder])
+        __metadata('design:paramtypes', [forms_1.FormBuilder, task_service_1.TaskService])
     ], TaskFormComponent);
     return TaskFormComponent;
 }());

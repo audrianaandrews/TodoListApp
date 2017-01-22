@@ -1,4 +1,4 @@
-#task{
+.task{
     display: block;
     overflow: auto;
     border-bottom: 1px solid #998675;
@@ -19,7 +19,7 @@ button{
     height: 20px;
     line-height: 22px;
 }
-button#deleteButton{
+button.deleteButton{
     font-size: 29px;
 }
 button:hover{

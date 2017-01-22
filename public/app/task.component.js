@@ -10,11 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var task_1 = require('./task');
+var task_service_1 = require('./task.service');
 var TaskComponent = (function () {
-    function TaskComponent() {
+    function TaskComponent(taskService) {
+        this.taskService = taskService;
         this.deleteTask = new core_1.EventEmitter();
+        this.editTask = new core_1.EventEmitter();
     }
+    TaskComponent.prototype.editClicked = function (task) {
+        this.editTask.next(this.task);
+        task.toggle();
+    };
     TaskComponent.prototype.deleteClicked = function () {
+        //console.log(this.task);
         this.deleteTask.next(this.task);
     };
     __decorate([
@@ -25,14 +33,19 @@ var TaskComponent = (function () {
         core_1.Output(), 
         __metadata('design:type', Object)
     ], TaskComponent.prototype, "deleteTask", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TaskComponent.prototype, "editTask", void 0);
     TaskComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'task',
             templateUrl: 'task.component.html',
-            styleUrls: ['task.component.css']
+            styleUrls: ['task.component.css'],
+            providers: [task_service_1.TaskService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [task_service_1.TaskService])
     ], TaskComponent);
     return TaskComponent;
 }());

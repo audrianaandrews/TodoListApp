@@ -2,7 +2,7 @@
     <div class="col-sm-12">
   <h1>Your Todo List</h1>
   <div class="task-container">
-<task *ngFor="let t of tasks; let i = index;" [task]="t" (deleteTask)="deleteTask(i)"></task>
+<task *ngFor="let t of tasks; let i = index;" [task]="t" (deleteTask)="deleteTask(i)"  (editTask)="editTask(i, t)" [attr.id]="i"></task>
 </div>
 <hr>
 <task-form (taskCreated)="addTask($event)"></task-form>

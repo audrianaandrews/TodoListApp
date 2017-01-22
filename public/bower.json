@@ -1,0 +1,18 @@
+{
+  "name": "todo-list-app",
+  "homepage": "https://github.com/audrianaandrews/TodoListApp",
+  "authors": [
+    "Audriana <audriana.andrews@gmail.com>"
+  ],
+  "description": "Simple todo list app",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
