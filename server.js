@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
 
 app.use('/scripts', express.static(__dirname + '/node_modules/'));
-app.use("/public", express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/api/', tasks);
