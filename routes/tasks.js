@@ -51,7 +51,9 @@ router.get('/tasks', (req, res) =>{
     db.collection('tasks').find({'_id': cookievalue}).toArray().then(function(tasks) {
       console.log(tasks[0]);
       res.json(tasks[0]);
-    })
+    }).catch(function () {
+     console.log("Promise Rejected");
+});
   }
 })
 
@@ -68,7 +70,9 @@ router.put('/tasks/:id', function(req, res, next) {
         console.log('Database updated.')
         res.json({updated: "Succeeded"});
       })
-    })
+    }).catch(function () {
+       console.log("Promise Rejected");
+  });
   }
 });
 
@@ -88,7 +92,9 @@ router.delete('/tasks/:id', function(req, res) {
          }
        })
        res.json(taskArray);
-     })
+     }).catch(function () {
+         console.log("Promise Rejected");
+    });
    }
 });
 
