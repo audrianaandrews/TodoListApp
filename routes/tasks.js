@@ -10,6 +10,10 @@ var mongoose = require('mongoose')
 var path = require('path')
 var cookieId = mongoose.Types.ObjectId().toString();
 
+/*MongoClient.connect('mongodb://'+ loginInfo.username + ':'+ loginInfo.password + '@ds111529.mlab.com:11529/tasks', (err, database) => {
+  if (err) return console.log(err);
+  db = database;
+})*/
 MongoClient.connect('mongodb://'+ process.env.MONGO_USERNAME + ':'+ process.env.MONGO_PASSWORD + '@ds111529.mlab.com:11529/tasks', (err, database) => {
   if (err) return console.log(err);
   db = database;

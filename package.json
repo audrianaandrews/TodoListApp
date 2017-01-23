@@ -5,6 +5,7 @@
   "description": "Todo list app",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "lite": "lite-server",
     "postinstall": "typings install",
     "tsc": "tsc",
