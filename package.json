@@ -1,11 +1,10 @@
 {
-  "name": "angular2-quickstart",
+  "name": "todo-list-app",
   "version": "1.0.0",
   "author": "Audriana Andrews",
   "description": "Todo list app",
   "main": "server.js",
   "scripts": {
-    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
     "lite": "lite-server",
     "postinstall": "typings install",
     "tsc": "tsc",
