@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 const MongoClient = require('mongodb').MongoClient
 var router = express.Router();
-var loginInfo = require('./connect.json')
+//var loginInfo = require('./connect.json')
 var mongoose = require('mongoose')
 var path = require('path')
 var cookieId = mongoose.Types.ObjectId().toString();
