@@ -43,7 +43,7 @@ export class TaskListComponent  implements OnInit{
 	}
 
   deleteTask(taskIndex) {
-		console.log(taskIndex);
+		//console.log(taskIndex);
 		var indexString = taskIndex.toString();
 		this.taskService.removeTask(indexString)
 											.subscribe(

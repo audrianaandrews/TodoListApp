@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 //Add a task
 router.post('/tasks', (req, res, next) => {
     var cookievalue = req.cookies.task;
-    console.log(cookievalue);
+    //console.log(cookievalue);
     if(cookievalue  === undefined){
         db.collection('tasks').save({'_id': cookieId, 'userTasks':[req.body.taskText]}, (err, result) => {
           if (err) return console.log(err)
@@ -53,7 +53,7 @@ router.get('/tasks', (req, res) =>{
   var cookievalue = req.cookies.task;
   if(cookievalue  != undefined){
     db.collection('tasks').find({'_id': cookievalue}).toArray().then(function(tasks) {
-      console.log(tasks[0]);
+      //console.log(tasks[0]);
       res.json(tasks[0]);
     }).catch(function () {
      console.log("Promise Rejected");

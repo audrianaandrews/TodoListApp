@@ -8,12 +8,10 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class TaskService {
-     // Resolve HTTP using the constructor
      constructor (private http: Http) {}
-     // private instance variable to hold base url
      private tasksUrl = 'api/tasks';
 
-     // Fetch all existing comments
+     // Get all tasks from the database
      getTasks() {
 
      return this.http.get(this.tasksUrl)
@@ -24,34 +22,29 @@ export class TaskService {
 
      // Add a new task
     addTask (body: any) {
-        let bodyString = JSON.stringify(body.value); // Stringify payload
-        let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-        let options       = new RequestOptions({ headers: headers }); // Create a request option
+        let bodyString = JSON.stringify(body.value);
+        let headers      = new Headers({ 'Content-Type': 'application/json' });
+        let options       = new RequestOptions({ headers: headers });
 
-        return this.http.post(this.tasksUrl, bodyString, options) // ...using post request
-                         .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
+        return this.http.post(this.tasksUrl, bodyString, options)
+                         .map((res:Response) => res.json())
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'))
-                         /*.subscribe(res => {},
-                            	      err => {
-                            	          // Log errors if any
-                            	          console.log(err);
-                            	      });*/
     }
 
     // Update a task
     updateTask (id:string, taskText:string){
-        let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-        let options       = new RequestOptions({ headers: headers }); // Create a request option
+        let headers      = new Headers({ 'Content-Type': 'application/json' });
+        let options       = new RequestOptions({ headers: headers });
 
-        return this.http.put(`${this.tasksUrl}/${id}`, {'taskText': taskText}, options) // ...using put request
-                         .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
-                         .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+        return this.http.put(`${this.tasksUrl}/${id}`, {'taskText': taskText}, options)
+                         .map((res:Response) => res.json())
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     // Delete a task
     removeTask (id:string): Observable<Task[]> {
-        return this.http.delete(`${this.tasksUrl}/${id}`) // ...using delete request
-                         .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
-                         .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+        return this.http.delete(`${this.tasksUrl}/${id}`)
+                         .map((res:Response) => res.json())
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
     }
 }
